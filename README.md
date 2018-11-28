@@ -8,3 +8,5 @@ CVUT FEL BDT course
 * [Official python documentation](https://docs.python.org/3/)
 * [Hive language manual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
 * [Apache Spark manual](https://spark.apache.org/docs/1.6.0/)
+* [PySpark SQL manual](http://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html)
+* [CSV files import/export](https://github.com/databricks/spark-csv)
