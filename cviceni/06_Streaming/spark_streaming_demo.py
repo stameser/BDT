@@ -33,7 +33,7 @@ from __future__ import print_function
 import sys
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import explode, split, length
+from pyspark.sql.functions import explode, split, length, lower, col
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
@@ -59,7 +59,7 @@ if __name__ == "__main__":
         .option('host', host)
         .option('port', port)
         .load()
-    ).filter(length('word') > 5)
+    )
 
     # Split the lines into words
     words = lines.select(
@@ -68,6 +68,11 @@ if __name__ == "__main__":
             split(lines.value, ' ')
         ).alias('word')
     )
+    
+    # Filter out words that are less than 5 characters in length
+    words = words.filter(length('word') > 5)
+    # Transform words to lower case
+    words = words.withColumn('word', lower(col('word')))
 
     # Generate running word count
     wordCounts = words.groupBy('word').count()
