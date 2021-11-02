@@ -68,6 +68,9 @@ if __name__ == "__main__":
             split(lines.value, ' ')
         ).alias('word')
     )
+    
+    # Transform words to lower case
+    words = words.withColumn('word', lower(col('word')))
 
     # Read stop words as dataframe
     stop_df = spark.read.text('/user/pascepet/data/stopwords.txt').cache()
